@@ -37,6 +37,11 @@ public class DiaryController {
     @PutMapping("/update/diary")
     void updateDiary(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
             , @RequestBody String text) {
-        diaryService.updateDiary(date,text);
+        diaryService.updateDiary(date, text);
+    }
+
+    @DeleteMapping("/delete/diary")
+    void deleteDiary(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        diaryService.deleteDiary(date);
     }
 }

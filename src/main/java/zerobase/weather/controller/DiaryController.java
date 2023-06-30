@@ -18,8 +18,8 @@ public class DiaryController {
 
     @PostMapping("/create/diary")
     void createDiary(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-            @RequestBody String text) {
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
+            , @RequestBody String text) {
         diaryService.createDiary(date, text);
     }
 
@@ -32,5 +32,11 @@ public class DiaryController {
     List<Diary> readDiaries(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
         return diaryService.readDiaries(startDate, endDate);
+    }
+
+    @PutMapping("/update/diary")
+    void updateDiary(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
+            , @RequestBody String text) {
+        diaryService.updateDiary(date,text);
     }
 }

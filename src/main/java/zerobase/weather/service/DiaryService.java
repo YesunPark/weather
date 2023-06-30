@@ -52,7 +52,13 @@ public class DiaryService {
     }
 
     public List<Diary> readDiaries(LocalDate startDate, LocalDate endDate) {
-        return diaryRepository.findAllByDateBetween(startDate,endDate);
+        return diaryRepository.findAllByDateBetween(startDate, endDate);
+    }
+
+    public void updateDiary(LocalDate date, String text) {
+        Diary nowDiary = diaryRepository.getFirstByDate(date);
+        nowDiary.setText(text);
+        diaryRepository.save(nowDiary); // 수정할 때도 save 사용
     }
 
     private String getWeatherString() {
